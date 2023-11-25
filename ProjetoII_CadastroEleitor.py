@@ -5,7 +5,7 @@ import csv
 #função para carregar os dados do arquivo json
 def carregamento_dados():
     try:
-        with open ('dados_json.json', 'r') as arquivo_json:
+        with open('dados_json.json', 'r', encoding='utf-8') as arquivo_json:
             dados_json = json.load(arquivo_json)
     except FileNotFoundError:
         dados_json = []
@@ -13,8 +13,8 @@ def carregamento_dados():
 
 #função para salvar os dados do arquivo json
 def salvamento_dados(dados_json):
-    with open('dados_json.json', 'w') as arquivo_json:
-        json.dump(dados_json, arquivo_json, indent=2)
+    with open('dados_json.json', 'w', encoding='utf-8') as arquivo_json:
+        json.dump(dados_json, arquivo_json, indent=2, ensure_ascii=False)
 
 #função para cadastrar as respostas da pesquisa 
 def cadastro_eleitor():
@@ -68,22 +68,28 @@ def idade_media():
         media_idade = soma_idade / len(dados_eleitores)
         print(f'A média da idade dos eleitores é: {media_idade:.2f}')
     
+    with open('media_entrevistados.csv', 'w', newline='') as arquivo_csv:
+        dado_media = csv.writer(arquivo_csv)
+        dado_media.writerow(['Idade média dos entrevistados'])
+        dado_media.writerow([media_idade])
+
+#função para visualizar o entrevistado com maior e menor idade 
 def idade_max_min():
     dados_json = carregamento_dados()
     if not dados_json:
         print('Dados não encontrados')
         return
-    try:
-        dados_eleitores = [dado_eleitor['idade_eleitor'] for dado_eleitor in dados_json]
-    except KeyError:
-        print('Dados de idade não encontrados')
-        return
+
+    dados_eleitores = [dado_eleitor['idade_eleitor'] for dado_eleitor in dados_json]
     
-    idade_max = max(zip(dados_json, dados_eleitores), key=lambda dado: dado[1])
-    idade_min = min(zip(dados_json, dados_eleitores), key=lambda dado: dado[1])
+    indice_idade_max = max(range(len(dados_eleitores)), key=lambda i: dados_eleitores[i])
+    indice_idade_min = min(range(len(dados_eleitores)), key=lambda i: dados_eleitores[i])
+
+    info_max = dados_json[indice_idade_max]
+    info_min = dados_json[indice_idade_min]
  
-    print(f'Maior idade: {idade_max[1]} ({idade_max[0]["nome_eleitor"]})')
-    print(f'Menor idade: {idade_min[1]} ({idade_min[0]["nome_eleitor"]})')
+    print(f'O entrevistado, ({info_max["nome_eleitor"]}), possui a maior idade: {info_max["idade_eleitor"]}')
+    print(f'O entrevistado, ({info_min["nome_eleitor"]}), possui a menor idade:  {info_min["idade_eleitor"]}')
 
 #função principal do nosso programa 
 def main(): 
