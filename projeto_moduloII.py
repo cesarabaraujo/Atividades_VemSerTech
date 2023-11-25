@@ -52,7 +52,7 @@ def atualizando_voto():
 def deletando_eleitor():
     deletar_eleitor = input(f'Nome do eleitor para deletar: ')
     dados_json = carregamento_dados()
-    dados_json = [dado_eleitor for dado_eleitor in dados_json
+    dados_json = [dado_eleitor for dado_eleitor in dados_json 
                   if dado_eleitor['nome_eleitor'] != deletar_eleitor]
     salvamento_dados(dados_json)
 
@@ -62,8 +62,7 @@ def idade_media():
     if not dados_json:
         print('Não há cadastro')
         return
-    dados_eleitores = [dado_eleitor['idade_eleitor'] 
-                       for dado_eleitor in dados_json]
+    dados_eleitores = [dado_eleitor['idade_eleitor'] for dado_eleitor in dados_json]
     if dados_eleitores: 
         soma_idade = sum(dados_eleitores)
         media_idade = soma_idade / len(dados_eleitores)

@@ -1,0 +1,142 @@
+[
+  {
+    "nome_eleitor": "Flávia",
+    "idade_eleitor": 31,
+    "voto_cadastro": "Candidato5"
+  },
+  {
+    "nome_eleitor": "Ana",
+    "idade_eleitor": 40,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Henrique",
+    "idade_eleitor": 34,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Maria",
+    "idade_eleitor": 34,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "Aquiles",
+    "idade_eleitor": 71,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "Maria",
+    "idade_eleitor": 72,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Isabele",
+    "idade_eleitor": 42,
+    "voto_cadastro": "Candidato2"
+  },
+  {
+    "nome_eleitor": "Marta",
+    "idade_eleitor": 60,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "João",
+    "idade_eleitor": 58,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "Lala",
+    "idade_eleitor": 64,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Socrátes",
+    "idade_eleitor": 19,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Maria",
+    "idade_eleitor": 66,
+    "voto_cadastro": "Candidato5"
+  },
+  {
+    "nome_eleitor": "Judá",
+    "idade_eleitor": 50,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Platão",
+    "idade_eleitor": 74,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Kant",
+    "idade_eleitor": 100,
+    "voto_cadastro": "Candidato5"
+  },
+  {
+    "nome_eleitor": "Adão",
+    "idade_eleitor": 22,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Aldrin",
+    "idade_eleitor": 75,
+    "voto_cadastro": "Candidato5"
+  },
+  {
+    "nome_eleitor": "Isabele",
+    "idade_eleitor": 35,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Platão",
+    "idade_eleitor": 20,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "Platão",
+    "idade_eleitor": 77,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Henrique",
+    "idade_eleitor": 96,
+    "voto_cadastro": "Candidato5"
+  },
+  {
+    "nome_eleitor": "Flávia",
+    "idade_eleitor": 39,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "João",
+    "idade_eleitor": 48,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Lala",
+    "idade_eleitor": 96,
+    "voto_cadastro": "Candidato4"
+  },
+  {
+    "nome_eleitor": "Lala",
+    "idade_eleitor": 81,
+    "voto_cadastro": "Candidato1"
+  },
+  {
+    "nome_eleitor": "Aldrin",
+    "idade_eleitor": 36,
+    "voto_cadastro": "Candidato2"
+  },
+  {
+    "nome_eleitor": "Lala",
+    "idade_eleitor": 68,
+    "voto_cadastro": "Candidato3"
+  },
+  {
+    "nome_eleitor": "Júlia",
+    "idade_eleitor": 60,
+    "voto_cadastro": "Candidato1"
+  }
+]
