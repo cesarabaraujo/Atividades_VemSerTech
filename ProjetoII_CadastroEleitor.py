@@ -65,8 +65,8 @@ def idade_media():
     dados_eleitores = [dado_eleitor['idade'] for dado_eleitor in dados_json]
     if dados_eleitores:
         soma_idade = reduce(lambda x, y: x + y, dados_eleitores)
-        media_idade = soma_idade / len(dados_eleitores)
-        print(f'A média da idade dos eleitores é: {media_idade:.2f}')
+        media_idade = soma_idade // len(dados_eleitores)
+        print(f'A média da idade dos eleitores é: {media_idade:.0f}')
 
     with open('media_entrevistados.csv', 'w', newline='') as arquivo_csv:
         dado_media = csv.writer(arquivo_csv)
