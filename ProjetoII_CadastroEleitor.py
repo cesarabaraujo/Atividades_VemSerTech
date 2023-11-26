@@ -34,6 +34,7 @@ def visualizando_resposta():
     dados_json = carregamento_dados()
     for resposta_eleitor in dados_json:
         print(resposta_eleitor)
+
 #função para atualizar voto
 def atualizando_voto():
     eleitor_cadastrado = input(f'Qual o nome do eleitor que quer atualizar?: ')
@@ -80,8 +81,8 @@ def idade_max_min():
         print('Dados não encontrados')
         return
 
-    info_max = max(dados_json, key=lambda x: x['idade'])
-    info_min = min(dados_json, key=lambda x: x['idade'])
+    info_max = max(dados_json, key=lambda i: i['idade'])
+    info_min = min(dados_json, key=lambda i: i['idade'])
  
     print(f'O entrevistado, ({info_max["nome"]}), possui a maior idade: {info_max["idade"]}')
     print(f'O entrevistado, ({info_min["nome"]}), possui a menor idade:  {info_min["idade"]}')
