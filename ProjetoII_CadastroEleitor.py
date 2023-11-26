@@ -1,6 +1,7 @@
 #importando as principais bibliotecas
 import json
 import csv
+from functools import reduce
 
 #função para carregar os dados do arquivo json
 def carregamento_dados():
@@ -23,9 +24,9 @@ def cadastro_eleitor():
     voto_cadastro = input(f'Qual candidato pretende votar?: ')
     
     dados_json = carregamento_dados()
-    dados_json.append({'nome_eleitor': nome_cadastro, 
-                       'idade_eleitor': idade_cadastro, 
-                       'voto_cadastro': voto_cadastro})
+    dados_json.append({'nome': nome_cadastro, 
+                       'idade': idade_cadastro, 
+                       'voto': voto_cadastro})
     salvamento_dados(dados_json)
 
 #função para visualizar cadastro
@@ -33,15 +34,14 @@ def visualizando_resposta():
     dados_json = carregamento_dados()
     for resposta_eleitor in dados_json:
         print(resposta_eleitor)
-
 #função para atualizar voto
 def atualizando_voto():
     eleitor_cadastrado = input(f'Qual o nome do eleitor que quer atualizar?: ')
-    novo_voto = input(f'Qual o novo candidato pretende votas?: ')
+    novo_voto = input(f'Qual o novo candidato pretende votar?: ')
     dados_json = carregamento_dados()
     for dado_eleitor in dados_json:
-        if dado_eleitor['nome_eleitor'] == eleitor_cadastrado:
-            dado_eleitor['voto_cadastro'] = novo_voto
+        if dado_eleitor['nome'] == eleitor_cadastrado:
+            dado_eleitor['voto'] = novo_voto
             print(f'Voto atualizado para {novo_voto}')
             salvamento_dados(dados_json)
             print(f'Resposta atualizada')
@@ -53,21 +53,21 @@ def deletando_eleitor():
     deletar_eleitor = input(f'Nome do eleitor para deletar: ')
     dados_json = carregamento_dados()
     dados_json = [dado_eleitor for dado_eleitor in dados_json 
-                  if dado_eleitor['nome_eleitor'] != deletar_eleitor]
+                  if dado_eleitor['nome'] != deletar_eleitor]
     salvamento_dados(dados_json)
 
-#função para visualizar idade média dos entrevistado
+#função para visualizar idade média dos entrevistados
 def idade_media():
     dados_json = carregamento_dados()
     if not dados_json:
         print('Não há cadastro')
         return
-    dados_eleitores = [dado_eleitor['idade_eleitor'] for dado_eleitor in dados_json]
-    if dados_eleitores: 
-        soma_idade = sum(dados_eleitores)
+    dados_eleitores = [dado_eleitor['idade'] for dado_eleitor in dados_json]
+    if dados_eleitores:
+        soma_idade = reduce(lambda x, y: x + y, dados_eleitores)
         media_idade = soma_idade / len(dados_eleitores)
         print(f'A média da idade dos eleitores é: {media_idade:.2f}')
-    
+
     with open('media_entrevistados.csv', 'w', newline='') as arquivo_csv:
         dado_media = csv.writer(arquivo_csv)
         dado_media.writerow(['Idade média dos entrevistados'])
@@ -80,29 +80,43 @@ def idade_max_min():
         print('Dados não encontrados')
         return
 
-    dados_eleitores = [dado_eleitor['idade_eleitor'] for dado_eleitor in dados_json]
-    
-    indice_idade_max = max(range(len(dados_eleitores)), key=lambda i: dados_eleitores[i])
-    indice_idade_min = min(range(len(dados_eleitores)), key=lambda i: dados_eleitores[i])
-
-    info_max = dados_json[indice_idade_max]
-    info_min = dados_json[indice_idade_min]
+    info_max = max(dados_json, key=lambda x: x['idade'])
+    info_min = min(dados_json, key=lambda x: x['idade'])
  
-    print(f'O entrevistado, ({info_max["nome_eleitor"]}), possui a maior idade: {info_max["idade_eleitor"]}')
-    print(f'O entrevistado, ({info_min["nome_eleitor"]}), possui a menor idade:  {info_min["idade_eleitor"]}')
+    print(f'O entrevistado, ({info_max["nome"]}), possui a maior idade: {info_max["idade"]}')
+    print(f'O entrevistado, ({info_min["nome"]}), possui a menor idade:  {info_min["idade"]}')
 
-#função principal do nosso programa 
+#função para filtrar os eleitores entrevistados por candidato 
+def eleitores_candidato():
+    dados_json = carregamento_dados()
+    if not dados_json:
+        print('Dados não encontrados')
+        return
+    
+    candidatos_pesquisa = set(eleitor_pesquisa['voto'] for eleitor_pesquisa in dados_json)
+
+    for candidato_unico in candidatos_pesquisa:
+        eleitores_filtrados = filter(lambda x: x['voto'] == candidato_unico, dados_json)
+        print(f'Eleitores que votaram em {candidato_unico}:')
+        for eleitor_unico in eleitores_filtrados:
+            print(eleitor_unico)
+        print('-' * 30)
+
+#função principal do programa 
 def main(): 
         while True:
+            print('-' * 30)
             print(f'1. Cadastrar pesquisado')
             print(f'2. Visualizar cadastro dos pesquisados')
             print(f'3. Idade média dos pesquisados')
             print(f'4. Atualizar voto dos pesquisados')
             print(f'5. Deletar pesquisado')
             print(f'6. Visualizar idade max ou min dos pesquisados')
-            print(f'7. Sair')
+            print(f'7. Visualizar eleitores por candidato')
+            print(f'8. Sair')
+            print('-' * 30)
 
-            opcao_pesquisa = input(f'Escolha uma das opções:')
+            opcao_pesquisa = input(f'Escolha uma das opções: ')
             
             if opcao_pesquisa == '1':
                 cadastro_eleitor()
@@ -117,9 +131,13 @@ def main():
             elif opcao_pesquisa == '6':
                 idade_max_min()
             elif opcao_pesquisa == '7':
+                eleitores_candidato()
+            elif opcao_pesquisa == '8':
                 break
             else: 
                 print(f'Opção inexistente')
+            
+            print()
 
 if __name__ == "__main__":
     main()

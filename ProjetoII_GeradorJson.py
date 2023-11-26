@@ -31,7 +31,7 @@ def gerador_cadastro():
     nome_entrevistado = nomes_entrevistados(nomes_utilizados)
     idade_entrevistado = idade_entrevistados()
     voto_entrevistado = voto_entrevistados()
-    return {'nome_eleitor': nome_entrevistado, 'idade_eleitor': idade_entrevistado, 'voto_cadastro': voto_entrevistado}
+    return {'nome': nome_entrevistado, 'idade': idade_entrevistado, 'voto': voto_entrevistado}
 
 #cria variável que guarda lista de dicionários com os cadastros aleatórios
 cadastro_aleatorio = [gerador_cadastro() for _ in range(28)]
